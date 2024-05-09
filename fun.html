@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Page</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            overflow: hidden;
+        }
+        .text {
+            position: absolute;
+            font-size: 36px;
+            color: #e9082e; /* Bright pink */
+            font-family: 'Comic Sans MS', cursive; /* Fun font */
+            pointer-events: none; /* Prevent text elements from being clickable */
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const texts = ["Muwah😘", "Ptttcchhhh 💋", "Ptchh💖", "M.💘","Muah💕", "Muuwwwaaahhhh💑", "I love you❤️", "You are amazing😘", "bossbaby💌"];
+
+        function randomPosition() {
+            return {
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight
+            };
+        }
+
+        function createTextElement(text) {
+            const element = document.createElement("div");
+            element.classList.add("text");
+            element.innerText = text;
+            document.body.appendChild(element);
+            return element;
+        }
+
+        function fadeInOut(element) {
+            element.style.left = randomPosition().x + "px";
+            element.style.top = randomPosition().y + "px";
+            element.style.opacity = 1;
+            setTimeout(() => {
+                element.style.opacity = 0;
+            }, 1500); // Text display duration
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const textElement = createTextElement("");
+            let index = 0;
+            setInterval(() => {
+                textElement.innerText = texts[index];
+                fadeInOut(textElement);
+                index = (index + 1) % texts.length;
+            }, 2000); // Delay between text changes
+        });
+    </script>
+</body>
+</html>
